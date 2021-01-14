@@ -1,4 +1,5 @@
 import './App.css';
+import Post from './components/Post'
 
 function App() {
   return (
@@ -11,7 +12,10 @@ function App() {
           alt=""
           />
       </div>
+
       <h1>Hello Clever Programmers</h1>
+
+      <Post/>
       {/*Post */}
       {/*Post */}
     </div>
