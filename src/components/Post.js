@@ -3,10 +3,14 @@ import React from 'react'
 function Post() {
     return (
         <div>
-            <h3>Username</h3>
             {/* header => avatar => & username */}
-            {/* image */ }
+            <h3>Username</h3>
+
+            {/* image */}
+            <img src="/images/reactpic.png" />
+
             {/* username & caption*/}
+            <h4>Username: caption</h4>
 
         </div>
     )

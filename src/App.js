@@ -1,4 +1,6 @@
 import './App.css';
+
+//import Components
 import Post from './components/Post'
 
 function App() {
