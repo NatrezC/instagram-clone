@@ -7,12 +7,14 @@ function Post() {
     return (
         <div className="post">
             {/* header => avatar => & username */}
-            <Avatar
-                className="post__avatar"
-                alt='DFWAEFD'
-                src="/static/images/avatar/1.jpg"
-                />
-            <h3>Username</h3>
+            <div className="post__header">
+                <Avatar
+                    className="post__avatar"
+                    alt='DFWAEFD'
+                    src="/static/images/avatar/1.jpg"
+                    />
+                <h3>Username</h3>
+            </div>
 
             {/* image */}
             <img className="post__image" src="/images/reactpic.png" />
