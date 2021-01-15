@@ -7,3 +7,12 @@
 .post__text{
     font-weight: normal;
 }
+
+.post__header{
+    display:flex; 
+    align-items: center; /*allows avatar and username to be side by side*/
+}
+
+.post__avatar{
+    margin-right: 10px; /*allows a little bit of spacing between avatar and username
+}
