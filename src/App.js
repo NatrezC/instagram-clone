@@ -17,8 +17,8 @@ function App() {
 
       <h1>Hello Clever Programmers</h1>
 
-      <Post />
-      <Post />
+      <Post username ="staytuned96"  caption="Wow it works" imageUrl="/images/reactpic.png"/>
+      <Post username ="ajeatslocal"  caption="You are getting good at this" imageUrl="/images/reactpic.png"/>
       <Post />
       <Post />
       {/*Post */}
