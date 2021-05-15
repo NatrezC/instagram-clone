@@ -17,7 +17,10 @@ function App() {
 
       <h1>Hello Clever Programmers</h1>
 
-      <Post/>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
       {/*Post */}
       {/*Post */}
     </div>
