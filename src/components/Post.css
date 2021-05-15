@@ -1,3 +1,6 @@
+.post{
+    max-width: 500px;
+}
 .post__image{
     width: 100%;
     object-fit:contain; /*keeps the object ratio*/
@@ -6,12 +9,15 @@
 
 .post__text{
     font-weight: normal;
+    padding: 20px;
 }
 
 .post__header{
     display:flex; 
     align-items: center; /*allows avatar and username to be side by side*/
+    padding: 20px;
 }
+
 
 .post__avatar{
     margin-right: 10px; /*allows a little bit of spacing between avatar and username*/
