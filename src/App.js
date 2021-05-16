@@ -31,10 +31,17 @@ function App() {
       <h1>Hello Clever Programmers</h1>
 
       {
-        posts.map(post => {
-          <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+        posts.map((post) => {
+          return(
+            <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+          )
         })
+        
       }
+
+      
+      {/*Post */}
+      {/*Post */}
     </div>
   );
 }
