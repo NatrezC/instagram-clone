@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { db } from './firebase';
+
 
 //import Components
 import Post from './components/Post'
 
 function App() {
-  const [posts, setPosts] = useState([
-    {
-      username: "staytuned96",
-        caption: "Wow it works", 
-        imageUrl: "/images/reactpic.png"
-    },
-    {
-      username: "staytuned96",
-        caption: "Wow it works", 
-        imageUrl: "/images/reactpic.png"
-    }
-  ]);
+  const [posts, setPosts] = useState([]);
+
+  //useEffect -> Runs a piece of code based on a specific condition
+  useEffect(() => {
+    db.collection('posts').onSnapshot(snapshot => {
+      //every time a new post is added, this code runs
+      setPosts(snapshot.docs.map(doc => doc.data()))
+    })
+  }, []) //bracket means run this code once when page refresh..ONLY ONCE WITH THIS BRACKET
+
   return (
     <div className="app">
       {/*Header*/}
