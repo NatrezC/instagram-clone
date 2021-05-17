@@ -13,7 +13,10 @@ function App() {
   useEffect(() => {
     db.collection('posts').onSnapshot(snapshot => {
       //every time a new post is added, this code runs
-      setPosts(snapshot.docs.map(doc => doc.data()))
+      setPosts(snapshot.docs.map(doc => ({
+        id: doc.id, //for docs be  single id
+        post: doc.data() //docs data
+      })));
     })
   }, []) //bracket means run this code once when page refresh..ONLY ONCE WITH THIS BRACKET
 
@@ -31,9 +34,9 @@ function App() {
       <h1>Hello Clever Programmers</h1>
 
       {
-        posts.map((post) => {
+        posts.map(({ id, post }) => {
           return(
-            <Post username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+            <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
           )
         })
         
