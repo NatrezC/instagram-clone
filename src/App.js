@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { db } from './firebase';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-
-
-//import Components
 import Post from './components/Post'
+import { Button } from '@material-ui/core';
 
 //styling for Modal
 function getModalStyle() {
@@ -52,6 +49,10 @@ function App() {
     })
   }, []) //bracket means run this code once when page refresh..ONLY ONCE WITH THIS BRACKET
 
+  const signUp = (e) => {
+    
+  } 
+
   return (
     <div className="app">
       <Modal
@@ -70,7 +71,7 @@ function App() {
           alt=""
           />
       </div>
-      {/* <Button></Button> */}
+      <Button onClick={()=> setOpen(true)}>Sign Up</Button>
 
       <h1>Hello Clever Programmers</h1>
 
