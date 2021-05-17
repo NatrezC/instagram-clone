@@ -2,12 +2,44 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { db } from './firebase';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+
 
 //import Components
 import Post from './components/Post'
 
+//styling for Modal
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
+
 function App() {
+  const classes = useStyles();
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = React.useState(getModalStyle);
+
   const [posts, setPosts] = useState([]);
+  const [open, setOpen] = useState(false)
 
   //useEffect -> Runs a piece of code based on a specific condition
   useEffect(() => {
@@ -22,6 +54,14 @@ function App() {
 
   return (
     <div className="app">
+      <Modal
+        open={open}
+        onClose={()=> setOpen(false)}
+      >
+        <div style={modalStyle} className={classes.paper}>
+      <h2>I am a Modal</h2>
+        </div>
+      </Modal>
       {/*Header*/}
       <div className="app__header">
         <img
@@ -30,6 +70,7 @@ function App() {
           alt=""
           />
       </div>
+      {/* <Button></Button> */}
 
       <h1>Hello Clever Programmers</h1>
 
