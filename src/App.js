@@ -65,7 +65,7 @@ function App() {
 
   //useEffect -> Runs a piece of code based on a specific condition
   useEffect(() => {
-    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+    db.collection('posts')/*.orderBy('timestamp', 'desc')*/.onSnapshot(snapshot => {
       //every time a new post is added, this code runs
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id, //for docs be  single id
@@ -93,11 +93,6 @@ function App() {
 
   return (
     <div className="app">
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName }/>
-      ) : (
-          <h3>Login first to upload</h3>
-      )}
 
 
       <Modal
@@ -196,9 +191,12 @@ function App() {
         
       }
 
-      
-      {/*Post */}
-      {/*Post */}
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName }/>
+      ) : (
+          <h3>Login first to upload</h3>
+      )}
+
     </div>
   );
 }
