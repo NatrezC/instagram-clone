@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { db } from './firebase';
+import { auth, db } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Post from './components/Post'
@@ -36,10 +36,39 @@ function App() {
   const [modalStyle] = React.useState(getModalStyle);
 
   const [posts, setPosts] = useState([]);
-  const [open, setOpen] = useState(false)
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        //user has logged in
+        console.log(authUser);
+        setUser(authUser);
+
+        if (authUser.displayName) {
+          //don't update username
+
+        } else {
+          //if we just created someone
+          return authUser.updateProfile({
+            displayName: username,
+          });
+        }
+      } else {
+        //user has logged out
+        setUser(null)
+      }
+    })
+
+    return () => {
+      //perform some cleanup action
+      unsubscribe();
+    }
+  }, [user, username]);
 
 
   //useEffect -> Runs a piece of code based on a specific condition
@@ -53,7 +82,10 @@ function App() {
     })
   }, []) //bracket means run this code once when page refresh..ONLY ONCE WITH THIS BRACKET
   const signUp = (event) => {
-    
+    event.preventDefault();
+    auth.createUserWithEmailAndPassword(email, password)
+      .then()
+      .catch((error) => alert(error.message))
   }
 
   return (
@@ -63,7 +95,7 @@ function App() {
         onClose={()=> setOpen(false)}
       >
         <div style={modalStyle} className={classes.paper}>
-          <form>
+          <form className="app__signup">
 
           <center>
             <img
@@ -90,7 +122,7 @@ function App() {
               value={password}
               onChange={(e)=> setPassword(e.target.value)}
             />
-            <Button onClick={signUp}>Sign Up</Button>
+            <Button type="submit" onClick={signUp}>Sign Up</Button>
           </form>
           
         </div>
