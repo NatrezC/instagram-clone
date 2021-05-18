@@ -65,7 +65,7 @@ function App() {
 
   //useEffect -> Runs a piece of code based on a specific condition
   useEffect(() => {
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       //every time a new post is added, this code runs
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id, //for docs be  single id
