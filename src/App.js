@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Post from './components/Post'
 import { Button, Input } from '@material-ui/core';
+import ImageUpload from './ImageUpload';
 
 //styling for Modal
 function getModalStyle() {
@@ -92,6 +93,13 @@ function App() {
 
   return (
     <div className="app">
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName }/>
+      ) : (
+          <h3>Login first to upload</h3>
+      )}
+
+
       <Modal
         open={open}
         onClose={()=> setOpen(false)}
