@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import Post from './components/Post'
 import { Button, Input } from '@material-ui/core';
 import ImageUpload from './ImageUpload';
+import InstagramEmbed from 'react-instagram-embed';
 
 //styling for Modal
 function getModalStyle() {
@@ -170,7 +171,6 @@ function App() {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt=""
           />
-      </div>
       {user ? (
         <Button onClick={()=> auth.signOut()}>Logout</Button>
       ) : (
@@ -179,9 +179,9 @@ function App() {
             <Button onClick={()=> setOpen(true)}>Sign Up</Button>
           </div>
       )}
+      </div>
 
-      <h1>Hello Clever Programmers</h1>
-
+      <div className="app__posts">
       {
         posts.map(({ id, post }) => {
           return(
@@ -189,7 +189,23 @@ function App() {
           )
         })
         
-      }
+        }
+        
+        <InstagramEmbed
+          url='https://www.instagram.com/p/CO1tZi1l0T9/'
+          maxWidth={320}
+          hideCaption={false}
+          containerTagName='div'
+          protocol=''
+          injectScript
+          onLoading={() => {}}
+          onSuccess={() => {}}
+          onAfterRender={() => {}}
+          onFailure={() => {}}
+        />
+
+      </div>
+
 
       {user?.displayName ? (
         <ImageUpload username={user.displayName }/>
